@@ -1,0 +1,26 @@
+import pandas as pd 
+import pymysql
+ 
+host="ranepadata.ctjwrfgzyqcu.eu-west-1.rds.amazonaws.com" 
+port=3306 
+dbname="ranepadata" 
+user="ranepastudent" 
+password="ranepapassword" 
+
+conn = pymysql.connect(host, user=user,port=port, 
+passwd=password, db=dbname)
+ 
+cursor = conn.cursor()
+ 
+cursor.execute("CREATE TABLE AGE (id VARCHAR(255) NOT NULL, Age VARCHAR(255) NOT NULL, NS VARCHAR(255) NOT NULL PRIMARY KEY, Program VARCHAR(255) NOT NULL)")
+ 
+cursor.execute("insert into AGE values (1, 24, 'Aleksandr', 'FinTech') ") 
+conn.commit()
+ 
+cursor.execute("SELECT NS FROM AGE") 
+results = cursor.fetchall() 
+print(results)
+ 
+cursor.execute("CREATE TABLE IMAGE (id VARCHAR(255) NOT NULL, Age VARCHAR(255) NOT NULL, NS VARCHAR(255) NOT NULL PRIMARY KEY, imageurl VARCHAR(255) NOT NULL)")
+ 
+cursor.execute("CREATE TABLE GRADE (id VARCHAR(255) NOT NULL, Age VARCHAR(255) NOT NULL,NS VARCHAR(255) NOT NULL PRIMARY KEY, Grade VARCHAR(255) NOT NULL)")
